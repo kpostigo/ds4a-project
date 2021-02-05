@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}College Scoring Tool{% endblock %}
+{% block heading %}College Scoring Tool{% endblock %}
+{% block content %}
+<form action="/results" method="post">
+  <p>School Name: <input type="text" name="school_name" /></p>
+  <p><input type="submit" value="add" /></p>
+</form>
+{% endblock %}

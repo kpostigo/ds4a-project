@@ -2,8 +2,62 @@
 {% block title %}College Scoring Tool{% endblock %}
 {% block heading %}College Scoring Tool{% endblock %}
 {% block content %}
+
 <form action="/results" method="post">
   <p>School Name: <input type="text" name="school_name" /></p>
   <p><input type="submit" value="add" /></p>
+
+
+  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+  <option selected>Enter Weight</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+</select>
+<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+  <option selected>Enter Weight</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+</select>
+<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+  <option selected>Enter Weight</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+</select>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">School</th>
+      <th scope="col">Tuition</th>
+      <th scope="col">Graduation Rate</th>
+      <th scope="col">Employment Rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">School 1 </th>
+      <td>$50k</td>
+      <td>90%</td>
+      <td>99%</td>
+    </tr>
+    <tr>
+      <th scope="row">School 2</th>
+      <td>80k</td>
+      <td>50%</td>
+      <td>80%</td>
+    </tr>
+    <tr>
+      <th scope="row">School 3</th>
+  
+      <td>60k</td>
+      <td>55%</td>
+      <td>72%</td>
+    </tr>
+    
+  </tbody>
+</table>
 </form>
 {% endblock %}
