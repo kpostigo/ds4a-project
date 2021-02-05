@@ -10,7 +10,7 @@
 <body>
   <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #3590F3;">
     <div class="container">
-      <a class="navbar-brand" href="#"><b>College Scoring Tool</b></a>
+      <a class="navbar-brand"><b>College Scoring Tool</b></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -25,7 +25,10 @@
   </nav>
   
   <div class="container">
-    <h1>{% block heading %}{% endblock %}</h1>
+    <h1 class="text-center m-5">
+      {% block heading %}{% endblock %}</h1>
+  </div>
+  <div class="container">
     {% block content %}
     {% endblock %}
   </div>

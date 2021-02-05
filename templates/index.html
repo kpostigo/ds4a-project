@@ -7,59 +7,77 @@
 {% block heading %}College Scoring Tool{% endblock %}
 {% block content %}
 
-  <p>
-    School Name: <input type="text" name="school_name" />
-    <button type="button" class="btn btn-outline-dark">Dark</button>
-  </p>
+<div class="position-relative top-0 start-50 w-50 translate-middle-x m-3">
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="School Name" aria-label="School Name" name="school_name"
+      aria-describedby="add-school-button">
+    <button class="btn btn-outline-secondary" type="button" id="add-school-button">
+      Add
+    </button>
+  </div>
+</div>
 
+<div class="container text-center">
+  <h3>Selected schools go here...</h3>
+</div>
 
-  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-    <option selected>Tuition Weight</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-  </select>
-  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-    <option selected>Graduation Rate Weight</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-  </select>
-  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-    <option selected>Employment Rate Weight</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-  </select>
+<div class="w-75 p-3 position-relative top-0 start-50 translate-middle-x">
+  <div class="row">
+    <div class="col">
+      <select class="form-select form-select-lg m-3" aria-label=".form-select-lg example">
+        <option selected>Tuition Weight</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+    </div>
+    <div class="col">
+      <select class="form-select form-select-lg m-3" aria-label=".form-select-lg example">
+        <option selected>Graduation Rate Weight</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+    </div>
+    <div class="col">
+      <select class="form-select form-select-lg m-3" aria-label=".form-select-lg example">
+        <option selected>Employment Rate Weight</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+    </div>
+  </div>
+</div>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">School</th>
-        <th scope="col">Tuition</th>
-        <th scope="col">Graduation Rate</th>
-        <th scope="col">Employment Rate</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">School 1 </th>
-          <td>$50k</td>
-          <td>90%</td>
-          <td>99%</td>
-      </tr>
-      <tr>
-        <th scope="row">School 2</th>
-          <td>80k</td>
-          <td>50%</td>
-          <td>80%</td>
-      </tr>
-      <tr>
-        <th scope="row">School 3</th>
-          <td>60k</td>
-          <td>55%</td>
-          <td>72%</td>
-      </tr>
-    </tbody>
-  </table>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">School</th>
+      <th scope="col">Tuition</th>
+      <th scope="col">Graduation Rate</th>
+      <th scope="col">Employment Rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">School 1 </th>
+      <td>$50k</td>
+      <td>90%</td>
+      <td>99%</td>
+    </tr>
+    <tr>
+      <th scope="row">School 2</th>
+      <td>80k</td>
+      <td>50%</td>
+      <td>80%</td>
+    </tr>
+    <tr>
+      <th scope="row">School 3</th>
+      <td>60k</td>
+      <td>55%</td>
+      <td>72%</td>
+    </tr>
+  </tbody>
+</table>
 {% endblock %}
