@@ -8,83 +8,92 @@
 {% block content %}
 
 <div class="position-relative top-0 start-50 w-50 translate-middle-x m-3">
-  <div class="input-group">
-    <input type="text" class="form-control" placeholder="School Name" aria-label="School Name" name="school_name"
-      aria-describedby="add-school-button">
-    <button class="btn btn-outline-secondary" type="button" id="add-school-button">
-      Add
-    </button>
-  </div>
+  <form method="post">
+    <div class="input-group">
+      <input type="text" class="form-control school_name" placeholder="School Name" aria-label="School Name"
+        name="school_name" aria-describedby="add-school-button">
+      <button class="btn btn-outline-secondary add-school-button" type="submit" id="add-school-button">
+        Add
+      </button>
+    </div>
+  </form>
 </div>
 
 <div class="container text-center m-4">
-  <h4>Selected schools go here...</h4>
+  <!-- if schools, list. if no schools, show empty...-->
+  {% if schoolList %}
+  <h5 class="mb-3"><b>Selected Schools:</b></h5>
+  <div class="school_list">
+    {% for school in schoolList %}
+    <p class="h5 mb-3">{{school}}</p>
+    {% endfor %}
+    <form action='/clear' method="post" class="mt-4">
+      <button class="btn btn-outline-secondary refresh-schools-button" type="submit">Clear List</button>
+    </form>
+  </div>
+  {% endif %}
 </div>
 
 <div class="w-75 p-3 position-relative top-0 start-50 translate-middle-x">
   <div class="row">
     <div class="col">
-      <p class="h5 text-center">Tuition Weight</p>
-      <select class="form-select form-select-lg m-3" aria-label=".form-select-lg example" id="tuitionSelect">
-        <option selected>Tuition Weight</option>
-        <option value="1">1</option>
+      <h5 class="text-center">Tuition Weight</h5>
+      <select name="tuitionWeight" form="rank_form" class="form-select form-select-lg m-3"
+        aria-label=".form-select-lg example">
+        <option selected value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
       </select>
     </div>
     <div class="col">
-      <p class="h5 text-center">Graduation Rate Weight</p>
-      <select class="form-select form-select-lg m-3" aria-label=".form-select-lg example" id="gradSelect">
-        <option selected>Graduation Rate Weight</option>
+      <h5 class="text-center">Graduation Rate Weight</h5>
+      <select name="graduationWeight" form="rank_form" class="form-select form-select-lg m-3"
+        aria-label=".form-select-lg example">
         <option value="1">1</option>
-        <option value="2">2</option>
+        <option selected value="2">2</option>
         <option value="3">3</option>
       </select>
     </div>
     <div class="col">
-      <p class="h5 text-center">Employment Rate Weight</p>
-      <select class="form-select form-select-lg m-3" aria-label=".form-select-lg example" id="employmentSelect">
-        <option selected>Employment Rate Weight</option>
+      <h5 class="text-center">Employment Rate Weight</h5>
+      <select name="employmentWeight" form="rank_form" class="form-select form-select-lg m-3"
+        aria-label=".form-select-lg example">
         <option value="1">1</option>
         <option value="2">2</option>
-        <option value="3">3</option>
+        <option selected value="3">3</option>
       </select>
     </div>
   </div>
 </div>
 
 <div class="container text-center mb-5">
-  <button type="button" class="btn btn-primary btn-lg">Rank</button>
+  <form id="rank_form" action="/results" method="post">
+    <button type="submit" class="btn btn-primary btn-lg rank-btn">Rank</button>
+  </form>
 </div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">School</th>
-      <th scope="col">Tuition</th>
-      <th scope="col">Graduation Rate</th>
-      <th scope="col">Employment Rate</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">School 1 </th>
-      <td>$50k</td>
-      <td>90%</td>
-      <td>99%</td>
-    </tr>
-    <tr>
-      <th scope="row">School 2</th>
-      <td>80k</td>
-      <td>50%</td>
-      <td>80%</td>
-    </tr>
-    <tr>
-      <th scope="row">School 3</th>
-      <td>60k</td>
-      <td>55%</td>
-      <td>72%</td>
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+  {% if tableData %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">School</th>
+        <th scope="col">Tuition</th>
+        <th scope="col">Graduation Rate</th>
+        <th scope="col">Employment Rate</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for data in tableData %}
+      <tr>
+        <th scope="row">{{data['INSTNM']}}</th>
+        <td>{{data['TUITIONFEE_IN']}}</td>
+        <td>{{data['C150_4']}}</td>
+        <td>{{data['EMPLOYMENT RATE']}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+</div>
 {% endblock %}
