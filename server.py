@@ -6,6 +6,8 @@ app = Flask(__name__,template_folder='./templates', static_folder='./static')
 
 school_list = []
 school_db = pd.read_csv('./db/school_list.csv')
+data = ''
+results = False
 
 @app.route('/', methods=['POST', 'GET'])
 def home():
@@ -24,7 +26,10 @@ def home():
 		return redirect(url_for('home'))
 	else:
 		# print(school_list)
-		return render_template("index.html", schoolList=school_list)
+		if results:
+			return render_template("index.html", schoolList=school_list, tableData=data)
+		else:
+			return render_template("index.html", schoolList=school_list)
 
 @app.route('/about')
 def about():
@@ -35,11 +40,13 @@ def clear():
 	# clear list if schools
 	school_list.clear()
 	# clear table...
+	results = False
 	return redirect(url_for('home', schoolList=school_list))
 
 @app.route('/results', methods=['POST'])
 def results():
 	if school_list:
+		results = True
 		# GET INPUTS
 		tWeight = int(request.form['tuitionWeight'])
 		gWeight = int(request.form['graduationWeight'])
@@ -49,14 +56,8 @@ def results():
 		query_db = school_db[school_db["INSTNM"].isin(school_list)]
 		# - rank schools
 		query_db = util.rank_schools(query_db, tWeight, gWeight, eWeight)
-		# put data into a dict
-		data = []
-		for item in query_db:
-			dict_item = {item['INSTNM'], item['TUITIONFEE_IN']}
-			data.append(dict_item)
-		print(data)
-		# UPDATE PAGE
-		return redirect(url_for('home', tableData=query_db))
+		return render_template("index.html", schoolList=school_list, tableData=query_db.to_dict(orient="records"))
+	# UPDATE PAGE
 	return redirect(url_for('home'))
 
 if __name__ == "__main__":
