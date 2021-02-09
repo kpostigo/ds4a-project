@@ -87,9 +87,9 @@
       {% for data in tableData %}
       <tr>
         <th scope="row">{{data['INSTNM']}}</th>
-        <td>{{data['Tuition_Avg']}}</td>
-        <td>{{data['C150_4']}}</td>
-        <td>{{data['EMPLOYMENT RATE']}}</td>
+        <td>{{ "$%.2f"|format(data['Tuition_Avg']|float)}}</td>
+        <td>{{ "%.2f"|format(data['C150_4']|float)}}</td>
+        <td>{{ "%.2f"|format(data['EMPLOYMENT RATE']|float)}}</td>
       </tr>
       {% endfor %}
     </tbody>
