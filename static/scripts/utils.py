@@ -10,4 +10,4 @@ def rank_schools(df, tWeight, gWeight, eWeight):
 		) / total_weight
 	)
 	df['Grand_Rank'] = df['Score'].rank(ascending=True)
-	return df.sort_values(by='Grand_Rank', ascending=False)
+	return df.sort_values(by='Grand_Rank', ascending=True)
