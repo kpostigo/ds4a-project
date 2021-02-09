@@ -2,14 +2,14 @@ from flask import Flask, request, render_template, redirect, url_for
 import pandas as pd
 import static.scripts.utils as util
 
-app = Flask(__name__,template_folder='./templates', static_folder='./static')
+application = Flask(__name__,template_folder='./templates', static_folder='./static')
 
 school_list = []
 school_db = pd.read_csv('./db/school_list.csv')
 data = ''
 results = False
 
-@app.route('/', methods=['POST', 'GET'])
+@application.route('/', methods=['POST', 'GET'])
 def home():
 	if request.method == 'POST':
 		school = request.form['school_name']
@@ -31,11 +31,11 @@ def home():
 		else:
 			return render_template("index.html", schoolList=school_list)
 
-@app.route('/about')
+@application.route('/about')
 def about():
 	return render_template("about.html")
 
-@app.route('/clear', methods=['POST'])
+@application.route('/clear', methods=['POST'])
 def clear():
 	# clear list if schools
 	school_list.clear()
@@ -43,7 +43,7 @@ def clear():
 	results = False
 	return redirect(url_for('home', schoolList=school_list))
 
-@app.route('/results', methods=['POST'])
+@application.route('/results', methods=['POST'])
 def results():
 	if school_list:
 		results = True
